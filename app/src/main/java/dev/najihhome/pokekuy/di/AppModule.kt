@@ -15,8 +15,15 @@ import dev.najihhome.pokekuy.domain.usecase.GetPokemonListUseCase
 import dev.najihhome.pokekuy.domain.usecase.LoginUserUseCase
 import dev.najihhome.pokekuy.domain.usecase.RegisterUserUseCase
 import dev.najihhome.pokekuy.domain.usecase.SearchPokemonUseCase
+import dev.najihhome.pokekuy.presentation.auth.login.LoginViewModel
+import dev.najihhome.pokekuy.presentation.auth.register.RegisterViewModel
+import dev.najihhome.pokekuy.presentation.detail.PokemonDetailViewModel
+import dev.najihhome.pokekuy.presentation.home.HomeViewModel
+import dev.najihhome.pokekuy.presentation.profile.ProfileViewModel
+import dev.najihhome.pokekuy.presentation.search.SearchViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -65,4 +72,12 @@ val appModule = module {
     single { GetPokemonListUseCase(get()) }
     single { GetPokemonDetailUseCase(get()) }
     single { SearchPokemonUseCase(get()) }
+
+    // ViewModels
+    viewModel { LoginViewModel(get()) }
+    viewModel { RegisterViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
+    viewModel { (pokemonId: String) -> PokemonDetailViewModel(pokemonId, get()) }
+    viewModel { (query: String) -> SearchViewModel(query, get()) }
 }

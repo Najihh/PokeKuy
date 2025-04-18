@@ -41,6 +41,7 @@ class PokemonRepositoryImpl(
                     }
                 } catch (e: Exception) {
                     Log.e("PokemonRepository", "Network request failed: ${e.message}, looking for local database")
+                    return@withContext Result.failure(Exception("Failed to get Pokemon data"))
                 }
             }
 
