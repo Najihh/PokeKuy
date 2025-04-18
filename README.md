@@ -1,6 +1,6 @@
 # PokeKuy
 
-A Kotlin Android app that displays Pokemon data from PokeAPI with offline access capability and user authentication.
+A Submission Android app that displays Pokemon data from PokeAPI with offline access capability and user authentication.
 
 ## Features
 
